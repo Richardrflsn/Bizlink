@@ -1,5 +1,8 @@
 
+import 'package:bizlink/view/intro.view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   // instance of auth
@@ -26,7 +29,16 @@ class AuthService {
   }
 
   // Sign out
-  Future<void> signOut() async{
+  Future<void> signOut(BuildContext context) async{
     return await auth.signOut();
+  }
+
+  // Forgot password
+  Future<void> sendPasswordResetLink(String email) async {
+    try{
+      await auth.sendPasswordResetEmail(email: email);
+    } catch (e){
+      print(e.toString());
+    }
   }
 }

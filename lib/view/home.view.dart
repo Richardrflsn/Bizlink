@@ -1,4 +1,5 @@
 import 'package:bizlink/providers/auth.provider.dart';
+import 'package:bizlink/view/intro.view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:bizlink/utils/global.colors.dart';
@@ -6,11 +7,25 @@ import 'package:bizlink/utils/global.colors.dart';
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
-  void logout(){
+  void logout(BuildContext context){
     // get auth service
     final auth = AuthService();
 
-    auth.signOut();
+    auth.signOut(context);
+    // After successful logout, navigate to the home page with fade-in transition
+    Navigator.pushReplacement(
+      context,
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => IntroView(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          // Define the fade-in animation
+          var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
+
+          // Apply FadeTransition to the child widget
+          return FadeTransition(opacity: fadeAnimation, child: child);
+        },
+      ),
+    );
   }
 
   @override
@@ -80,7 +95,9 @@ class HomeView extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: logout,
+                    onPressed: (){
+                      logout(context);
+                      },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       backgroundColor: GlobalColors.secondaryColor,

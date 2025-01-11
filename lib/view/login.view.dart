@@ -1,4 +1,5 @@
 import 'package:bizlink/providers/auth.provider.dart';
+import 'package:bizlink/providers/forgot.password.dart';
 import 'package:bizlink/utils/global.colors.dart';
 import 'package:bizlink/view/home.view.dart';
 import 'package:bizlink/view/signup.view.dart';
@@ -31,10 +32,19 @@ class _LoginViewState extends State<LoginView> {
     // Try Login
     try{
       await authService.signInWithEmailPassword(_emailController.text, _passwordController.text);
-      // After successful login, navigate to the home page
+      // After successful login, navigate to the home page with fade-in transition
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeView()),
+        PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) => HomeView(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            // Define the fade-in animation
+            var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
+
+            // Apply FadeTransition to the child widget
+            return FadeTransition(opacity: fadeAnimation, child: child);
+          },
+        ),
       );
     } catch(e) {
       showDialog(context: context, builder: ((context) => AlertDialog(
@@ -148,8 +158,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              // Handle the "Forgot Password?" action here
-                              print("Forgot Password clicked");
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword(),));
                             },
                             child: const Text(
                               'Forgot Password?',

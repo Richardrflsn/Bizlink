@@ -1,5 +1,6 @@
 import 'package:bizlink/providers/auth.provider.dart';
 import 'package:bizlink/utils/global.colors.dart';
+import 'package:bizlink/view/home.view.dart';
 import 'package:bizlink/view/login.view.dart';
 import 'package:bizlink/view/widgets/text.form.global.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,20 @@ class _SignupViewState extends State<SignupView> {
     if(_passwordController.text == _confirmPasswordController.text){
       try {
         await auth.signUpWithEmailPassword(_emailController.text, _passwordController.text);
+        // After successful signup, navigate to the home page with fade-in transition
+        Navigator.pushReplacement(
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => HomeView(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              // Define the fade-in animation
+              var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
+
+              // Apply FadeTransition to the child widget
+              return FadeTransition(opacity: fadeAnimation, child: child);
+            },
+          ),
+        );
       } catch (e) {
         showDialog(context: context, builder: ((context) => AlertDialog(
           title: Text(e.toString()),
