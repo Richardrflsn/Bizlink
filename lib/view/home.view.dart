@@ -152,7 +152,7 @@ class _HomeViewState extends State<HomeView> {
                       height: 35,
                     ),
                     const SizedBox(width: 8),
-                    // Location display text or input field
+                    // Location display text
                     if (_location == "Getting location..." || _location == "Permission Denied")
                       Text(
                         _location,
