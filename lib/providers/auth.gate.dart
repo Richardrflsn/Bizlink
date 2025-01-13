@@ -1,6 +1,5 @@
 import 'package:bizlink/view/home.view.dart';
 import 'package:bizlink/view/intro.view.dart';
-import 'package:bizlink/view/signup.view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

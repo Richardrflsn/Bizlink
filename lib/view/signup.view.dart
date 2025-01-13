@@ -36,7 +36,7 @@ class _SignupViewState extends State<SignupView> {
         Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => HomeView(),
+            pageBuilder: (context, animation, secondaryAnimation) => const HomeView(),
             transitionsBuilder: (context, animation, secondaryAnimation, child) {
               // Define the fade-in animation
               var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);

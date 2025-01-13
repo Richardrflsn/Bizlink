@@ -125,7 +125,7 @@ class IntroView extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             "Don't have an account? ",
                             style: TextStyle(
                               fontSize: 16,
@@ -141,7 +141,7 @@ class IntroView extends StatelessWidget {
                                   context, MaterialPageRoute(builder: (context) => const SignupView()),
                               );
                             },
-                            child: Text(
+                            child: const Text(
                               'Sign up now',
                               style: TextStyle(
                                 fontSize: 16,
@@ -154,7 +154,7 @@ class IntroView extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
 
-                      Text.rich(
+                      const Text.rich(
                         TextSpan(
                           text: 'By signing up, you agree to our ',
                           style: TextStyle(

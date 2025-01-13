@@ -10,7 +10,7 @@ class TextFormGlobal extends StatelessWidget {
   final TextInputType keyboardType;
 
   const TextFormGlobal({
-    Key? key,
+    super.key,
     required this.controller,
     required this.labelText,
     required this.hintText,
@@ -18,7 +18,7 @@ class TextFormGlobal extends StatelessWidget {
     this.isPasswordVisible = false,
     required this.togglePasswordVisibility,
     this.keyboardType = TextInputType.text,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

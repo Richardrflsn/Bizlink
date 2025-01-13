@@ -36,7 +36,7 @@ class _LoginViewState extends State<LoginView> {
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => HomeView(),
+          pageBuilder: (context, animation, secondaryAnimation) => const HomeView(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Define the fade-in animation
             var fadeAnimation = Tween(begin: 0.0, end: 1.0).animate(animation);
@@ -158,7 +158,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPassword(),));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ForgotPassword(),));
                             },
                             child: const Text(
                               'Forgot Password?',

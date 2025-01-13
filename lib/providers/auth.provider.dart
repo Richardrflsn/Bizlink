@@ -1,5 +1,4 @@
 
-import 'package:bizlink/view/intro.view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,12 @@ import 'package:flutter/material.dart';
 class AuthService {
   // instance of auth
   final FirebaseAuth auth = FirebaseAuth.instance;
+
+  // Get current user
+  User? get currentUser {
+    return auth.currentUser;
+  }
+
 
   // Sign in
   Future<UserCredential> signInWithEmailPassword(String email, password) async {
